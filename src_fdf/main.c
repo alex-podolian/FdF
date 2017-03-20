@@ -27,8 +27,8 @@ int			main(int argc, char **argv)
 	if (argc != 2)
 		return (ft_error("usage: ./fdf source_file\n"));
 	fd = open(argv[1], O_RDONLY);
-	if (fd < 0 || ft_read(fd, &map))
-		return (ft_error("error: invalid file"));
+	if (fd < 0 || ft_validate_map(fd, &map))
+		return (ft_error("error: invalid file\n"));
 
 
 

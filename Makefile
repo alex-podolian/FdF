@@ -44,7 +44,8 @@ OBJ1 = libft/ft_atoi.o libft/ft_bzero.o libft/ft_isalnum.o libft/ft_isalpha.o \
 	   libft/ft_wclen.o libft/ft_wcslen.o libft/ft_wcstombs.o \
 	   libft/ft_wctomb.o libft/ft_ld_intpower.o libft/ft_strjoin_free.o \
 	   libft/ft_ftoa_base.o libft/ft_strrev.o libft/get_next_line.o \
-	   libft/ft_words_count.o libft/ft_lstcount.o libft/ft_lstrev.o
+	   libft/ft_count_words.o libft/ft_lstcount.o libft/ft_lstrev.o \
+	   libft/ft_split_del.o
 
 OBJ2 = src_printf/ft_printf.o src_printf/ft_char.o src_printf/ft_convert.o \
 	   src_printf/ft_str.o src_printf/ft_is_mb.o src_printf/ft_flags.o \
@@ -301,14 +302,17 @@ libft/ft_strrev.o : libft/ft_strrev.c
 libft/get_next_line.o : libft/get_next_line.c
 	$(CC) $(CFLAGS) -c libft/get_next_line.c -o libft/get_next_line.o
 
-libft/ft_words_count.o : libft/ft_words_count.c
-	$(CC) $(CFLAGS) -c libft/ft_words_count.c -o libft/ft_words_count.o
+libft/ft_count_words.o : libft/ft_count_words.c
+	$(CC) $(CFLAGS) -c libft/ft_count_words.c -o libft/ft_count_words.o
 
 libft/ft_lstcount.o : libft/ft_lstcount.c
 	$(CC) $(CFLAGS) -c libft/ft_lstcount.c -o libft/ft_lstcount.o
 
 libft/ft_lstrev.o : libft/ft_lstrev.c
 	$(CC) $(CFLAGS) -c libft/ft_lstrev.c -o libft/ft_lstrev.o
+
+libft/ft_split_del.o : libft/ft_split_del.c
+	$(CC) $(CFLAGS) -c libft/ft_split_del.c -o libft/ft_split_del.o
 
 src_printf/ft_printf.o : src_printf/ft_printf.c
 	$(CC) $(CFLAGS) -c src_printf/ft_printf.c -o src_printf/ft_printf.o

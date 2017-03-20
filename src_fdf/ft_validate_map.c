@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
-static int	ft_mem_clean(t_list **list, t_map **map)
+
+static int		ft_clean_mem(t_list **list, t_map **m)
 {
 	t_list	*next;
 
@@ -22,15 +23,40 @@ static int	ft_mem_clean(t_list **list, t_map **map)
 		ft_memdel((void **)list);
 		*list = next;
 	}
-	if (map && *map)
+	if (m && *m)
 	{
-		ft_memdel((void **)&(*map)->vector);
-		ft_memdel((void **)map);
+		ft_memdel((void **)&(*m->vector));
+		ft_memdel((void **)m);
 	}
 	return (0);
 }
 
-static int	ft_get_line(int fd, t_list **list)
+static int		ft_fill_map(t_map **m, t_list *list)
+{
+	t_list	*lst;
+	int		x;
+	int		y;
+	char	**split;
+
+	lst = list;
+	y = -1;
+	while (++y < *m->height)
+	{
+		x = -1;
+		if (!(split = ft_strsplit(lst->content, ' ')))
+			return (ft_clean_mem(&list, m));
+		while (++x < *m->width)
+			*m->vector[y * (*m->width) + x] = ft_vector(x, y, split[x]);
+		ft_split_del(&split);
+		lst = lst->next;
+	}
+	ft_depth(*m);
+	ft_colors(*m);
+	ft_clean_mem(&list, 0);
+	return (1);
+}
+
+static int		ft_get_line(int fd, t_list **list)
 {
 	t_list	*tmp;
 	int		ret;
@@ -43,28 +69,37 @@ static int	ft_get_line(int fd, t_list **list)
 		if (count == -1)
 			count = ft_word_count(line, ' ');
 		tmp = ft_lstnew(line, ft_strlen(line) + 1);
-		if (tmp == NULL)
-			return (ft_mem_clean(list, NULL));
+		if (!tmp)
+			return (ft_clean_mem(list, 0));
 		ft_lstadd(list, tmp);
 		if (count != ft_word_count(line, ' '))
-			return (ft_mem_clean(list, NULL));
+			return (ft_clean_mem(list, 0));
 		ft_strdel(&line);
 	}
 	if (count == -1 || ret == -1)
-		return (ft_mem_clean(list, NULL));
+		return (ft_clean_mem(list, 0));
 	ft_lstrev(lst);
 	return (1);
 }
 
-int		ft_read(int fd, t_map **map)
+int				ft_validate_map(int fd, t_map **m)
 {
 	t_list	*list;
 
-	list = NULL;
+	list = 0;
 	if (!(ft_get_line(fd, &list)))
 		return (0);
-	*map = ft_get_map(ft_words_count(list->content, ' '), ft_lstcount(lst));
-	if (*map == NULL)
-		return (ft_mem_clean(&list, map));
-	return (ft_fill_map(map, list));
+	if (!(*m = ft_memalloc(sizeof(t_map))))
+		return(ft_clean_mem(&list, m));
+	*m->width = ft_count_words(list->content, ' ');
+	*m->height = ft_lstcount(list);
+	*m->min_depth = 0;
+	*m->max_depth = 0;
+	*m->vector = ft_memalloc(sizeof(t_vector *) * (*m->width) * (*m->height));
+	if (!(*m->vector))
+	{
+		ft_memdel((void **)&(*m));
+		return (ft_clean_mem(&list, m));
+	}
+	return (ft_fill_map(m, list));
 }

@@ -80,6 +80,7 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strjoin_free(char *s1, char *s2);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
+int					ft_split_del(char ***split);
 void				ft_strrev(char *s);
 /*
 **					=====	[LIST] 	 =====
@@ -133,6 +134,6 @@ void				ft_putnbr_fd(int n, int fd);
 **					=====   [ELSE]   =====
 */
 int					get_next_line(const int fd, char **line);
-int					ft_words_count(char *str, char c);
+int					ft_count_words(char *str, char c);
 
 #endif

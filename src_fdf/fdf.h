@@ -10,11 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../src_printf/ft_printf.h"
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <math.h>
+#ifndef FDF_H
+# define FDF_H
+# include "../src_printf/ft_printf.h"
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <math.h>
 
 typedef struct	s_vector
 {
@@ -33,5 +35,10 @@ typedef struct	s_map
 	t_vector	**vector;
 }				t_map;
 
-int				ft_read(int fd, t_map **map);
+int				ft_validate_map(int fd, t_map **m);
+int				ft_fill_map(t_map **map, t_list *list);
+t_vector		ft_vector(int x, int y, char *str);
+void			ft_depth(t_map *m);
+void			ft_color(t_map *m);
 
+#endif
