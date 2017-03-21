@@ -6,13 +6,13 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 15:06:09 by opodolia          #+#    #+#             */
-/*   Updated: 2017/03/20 20:41:35 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/03/21 18:05:18 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static double	ft_point(double val, double min, double max)
+double			ft_point(double val, double min, double max)
 {
 	if (val == min)
 		return (0.0);
@@ -28,7 +28,7 @@ static int		ft_rgb(int c_1, int c_2, double p)
 	return ((int)((double)c_1 + (c_2 - c_1) * p));
 }
 
-static int		ft_get_color(int c_1, int c_2, double p)
+int				ft_get_color(int c_1, int c_2, double p)
 {
 	int		r;
 	int		g;
@@ -54,7 +54,7 @@ void			ft_colors(t_map *m)
 		while (++v.x < m->width)
 		{
 			curr = m->vector[(int)v.y * m->width + (int)v.x];
-			curr->color = ft_get_color(0xFF0000, 0xFFFFFF, ft_ilerp(curr->z,
+			curr->color = ft_get_color(0xFF0000, 0xFFFFFF, ft_point(curr->z,
 				m->min_depth, m->max_depth));
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/16 17:24:21 by opodolia          #+#    #+#             */
-/*   Updated: 2017/03/20 20:35:31 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/03/21 18:04:28 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ typedef struct	s_line
 	int			d_y;
 	int			s_x;
 	int			s_y;
-	int			error;
-	int			error_2;
-}
+	int			err;
+	int			err_2;
+}				t_line;
 
 typedef struct	s_img
 {
@@ -60,6 +60,25 @@ typedef struct	s_img
 	int			stride;
 	int			end;
 }				t_img;
+
+typedef struct	s_cam
+{
+	double		x;
+	double		y;
+	double		offset_x;
+	double		offset_y;
+	int			scale;
+	double		**matrix;
+}				t_cam;
+
+typedef struct	s_mouse
+{
+	int			x;
+	int			y;
+	int			last_x;
+	int			last_y;
+	char		down;
+}				t_mouse;
 
 typedef struct	s_mlx
 {
@@ -75,8 +94,12 @@ typedef struct	s_mlx
 int				ft_validate_map(int fd, t_map **m);
 void			ft_depth(t_map *m);
 void			ft_colors(t_map *m);
-t_img			*ft_make_image(t_mlx *mlx);
+t_img			*ft_make_img(t_mlx *mlx);
 t_img			*ft_img_del(t_mlx *mlx, t_img *img);
 void			ft_rendering(t_mlx *mlx);
+void			ft_line(t_mlx *mlx, t_vector v_1, t_vector v_2);
+double			ft_point(double val, double min, double max);
+void			ft_set_pixel(t_img *img, int x, int y, int color);
+int				ft_get_color(int c_1, int c_2, double p);
 
 #endif

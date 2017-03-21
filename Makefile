@@ -6,7 +6,7 @@
 #    By: opodolia <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/20 16:00:27 by opodolia          #+#    #+#              #
-#    Updated: 2017/03/20 20:18:14 by opodolia         ###   ########.fr        #
+#    Updated: 2017/03/21 18:07:24 by opodolia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ FDF_OBJ_DIR = ./obj/
 FDF_INC_DIR = ./includes/
 
 # fdf source files
-FDF_FILES = main.c ft_validate_map.c ft_vector.c
+FDF_FILES = main.c validate_map.c depth_colors.c image.c rendering.c line.c
 
 FDF_OBJ = $(addprefix $(FDF_OBJ_DIR), $(FDF_FILES:.c=.o))
 

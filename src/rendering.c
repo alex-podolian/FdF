@@ -1,16 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rendering.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/21 15:44:02 by opodolia          #+#    #+#             */
+/*   Updated: 2017/03/21 16:54:09 by opodolia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
-
-static void		ft_line(t_mlx *mlx, t_vector v_1, t_vector v_2)
-{
-	t_line	line;
-
-	v_1.x = (int)v_1.x;
-	v_2.x = (int)v_2.x;
-	v_1.y = (int)v_1.y;
-	v_2.y = (int)v_2.y;
-	line.start = v_1;
-	line.stop = v_2;
-}
 
 static t_vector	ft_vector(t_vector v, t_mlx *mlx)
 {

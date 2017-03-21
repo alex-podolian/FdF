@@ -6,13 +6,13 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 15:05:36 by opodolia          #+#    #+#             */
-/*   Updated: 2017/03/20 20:38:23 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/03/21 15:38:36 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int	ft_clean_mem(t_list **list, t_map **m)
+static int		ft_clean_mem(t_list **list, t_map **m)
 {
 	t_list	*next;
 
@@ -31,7 +31,7 @@ static int	ft_clean_mem(t_list **list, t_map **m)
 	return (0);
 }
 
-static int	*ft_init_vector(int x, int y, char *str)
+static t_vector	*ft_init_vector(int x, int y, char *str)
 {
 	t_vector	*v;
 
@@ -44,7 +44,7 @@ static int	*ft_init_vector(int x, int y, char *str)
 	return (v);
 }
 
-static int	ft_fill_map(t_map **m, t_list *list)
+static int		ft_fill_map(t_map **m, t_list *list)
 {
 	t_list	*lst;
 	int		x;
@@ -69,7 +69,7 @@ static int	ft_fill_map(t_map **m, t_list *list)
 	return (1);
 }
 
-static int	ft_get_line(int fd, t_list **list)
+static int		ft_get_line(int fd, t_list **list)
 {
 	t_list	*tmp;
 	int		ret;
@@ -95,7 +95,7 @@ static int	ft_get_line(int fd, t_list **list)
 	return (1);
 }
 
-int			ft_validate_map(int fd, t_map **m)
+int				ft_validate_map(int fd, t_map **m)
 {
 	t_list	*list;
 

@@ -1,6 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   image.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/21 15:44:21 by opodolia          #+#    #+#             */
+/*   Updated: 2017/03/21 18:08:00 by opodolia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-t_image		*ft_img_del(t_mlx *mlx, t_img *img)
+void		ft_set_pixel(t_img *img, int x, int y, int color)
+{
+	if (x < 0 || x >= WIN_WIDTH || y < 0 || y >= WIN_HEIGHT)
+		return ;
+	*(int *)(img->ptr + ((x + y * WIN_WIDTH) * img->bpp)) = color;
+}
+
+t_img		*ft_img_del(t_mlx *mlx, t_img *img)
 {
 	if (img)
 	{
@@ -11,7 +30,7 @@ t_image		*ft_img_del(t_mlx *mlx, t_img *img)
 	return (0);
 }
 
-t_image		*ft_make_img(t_mlx *mlx)
+t_img		*ft_make_img(t_mlx *mlx)
 {
 	t_img	*img;
 

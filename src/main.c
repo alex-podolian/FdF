@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/16 15:56:17 by opodolia          #+#    #+#             */
-/*   Updated: 2017/03/20 20:24:54 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/03/21 15:46:57 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static t_mlx	*ft_mlx_del(t_mlx *mlx)
 {
 	if (mlx->window)
 		mlx_destroy_window(mlx->mlx, mlx->window);
-	if (mlx->image)
-		ft_img_del(mlx, mlx->image);
+	if (mlx->img)
+		ft_img_del(mlx, mlx->img);
 	if (mlx->cam)
 		ft_memdel((void **)&mlx->cam);
 	if (mlx->mouse)
@@ -29,12 +29,14 @@ static t_mlx	*ft_mlx_del(t_mlx *mlx)
 static t_mlx	*ft_init(char *title)
 {
 	t_mlx	*mlx;
+
 	if (!(mlx = ft_memalloc(sizeof(t_mlx))))
 		return (0);
-	if (!(mlx->mlx = mlx_init()) || !(mlx->img = ft_make_img(mlx)) ||
-		!(mlx->window = mlx_window(mlx->mlx, WIN_WIDTH, WIN_HEIGHT, title)) ||
-		!(mlx->cam = ft_memalloc(sizeof(t_cam))) ||
-		!(mlx->mouse = ft_memalloc(sizeof(t_mouse))))
+	if (!(mlx->mlx = mlx_init()) ||
+		!(mlx->img = ft_make_img(mlx)) ||
+		!(mlx->window = mlx_new_window(mlx->mlx, WIN_WIDTH, WIN_HEIGHT, title))
+		|| !(mlx->cam = ft_memalloc(sizeof(t_cam)))
+		|| !(mlx->mouse = ft_memalloc(sizeof(t_mouse))))
 		return (ft_mlx_del(mlx));
 	mlx->cam->x = 0.5;
 	mlx->cam->y = 0.5;
@@ -64,6 +66,6 @@ int				main(int argc, char **argv)
 	if (!(mlx = ft_init(ft_strjoin("FdF - ", argv[1]))))
 		return (ft_error("error: mlx couldn't init"));
 	mlx->map = map;
-	ft_solver(mlx);
+	ft_rendering(mlx);
 	return (0);
 }
