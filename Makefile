@@ -15,7 +15,7 @@ NAME_BASE = fdf
 
 # compiler
 CC = gcc
-CFLAGS =# -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g
 
 # directories
 FDF_SRC_DIR = ./src/
@@ -23,7 +23,8 @@ FDF_OBJ_DIR = ./obj/
 FDF_INC_DIR = ./includes/
 
 # fdf source files
-FDF_FILES = main.c validate_map.c depth_colors.c image.c rendering.c line.c
+FDF_FILES = main.c validate_map.c depth_colors.c image.c \
+			rendering.c line.c mouse_keyboard.c \
 
 FDF_OBJ = $(addprefix $(FDF_OBJ_DIR), $(FDF_FILES:.c=.o))
 

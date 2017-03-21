@@ -12,6 +12,25 @@
 
 #include "fdf.h"
 
+static t_vector ft_rotation(t_vector vec,t_cam *cam)
+{
+	double		x;
+	double		y;
+	double		z;
+	t_vector	v;
+
+	x = vec.x;
+	z = vec.z;
+	v.x = cos(vec->y) * x + sin(vec->y) * z;
+	v.z = -sin(vec->y) * x + cos(vec->y) * z;
+	y = vec.y;
+	z = v.z;
+	v.y = cos(vec->x) * y - sin(vec->x) * z;
+	v.z = sin(vec->x) * y + cos(vec->x) * z;
+	v.color = vec.color;
+	return (v);
+}
+
 static t_vector	ft_vector(t_vector v, t_mlx *mlx)
 {
 	v.x -= (double)(mlx->map->width - 1) / 2.0f;

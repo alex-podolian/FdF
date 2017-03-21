@@ -17,11 +17,8 @@
 # include "../libft_printf/includes/ft_printf.h"
 # include "../minilibx/mlx.h"
 # include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
 # include <math.h>
 # include <limits.h>
-# include <stdio.h>
 
 typedef struct	s_vector
 {
@@ -101,5 +98,9 @@ void			ft_line(t_mlx *mlx, t_vector v_1, t_vector v_2);
 double			ft_point(double val, double min, double max);
 void			ft_set_pixel(t_img *img, int x, int y, int color);
 int				ft_get_color(int c_1, int c_2, double p);
+int				ft_key_esc(int key, t_mlx *mlx);
+int				ft_mouse_down(int button, int x, int y, t_mlx *mlx);
+int				ft_mouse_up(int button, int x, int y, t_mlx *mlx);
+int				ft_mouse_move(int x, int y, t_mlx *mlx);
 
 #endif

@@ -67,5 +67,10 @@ int				main(int argc, char **argv)
 		return (ft_error("error: mlx couldn't init"));
 	mlx->map = map;
 	ft_rendering(mlx);
+	mlx_key_hook(mlx->window, ft_key_esc, mlx);
+	mlx_hook(mlx_window, 4, 0, ft_mouse_down, mlx);
+	mlx_hook(mlx->window, 5, 0, ft_mouse_up, mlx);
+	mlx_hook(mlx->window, 6, 0, ft_mouse_move, mlx);
+	mlx_loop(mlx->mlx);
 	return (0);
 }

@@ -13,11 +13,7 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <unistd.h>
 # include <stdarg.h>
-# include <stdlib.h>
-# include <stdint.h>
-# include <wchar.h>
 # include "../libft/includes/libft.h"
 
 # define RED  "\x1B[31m"
