@@ -134,6 +134,6 @@ void				ft_putnbr_fd(int n, int fd);
 **					=====   [ELSE]   =====
 */
 int					get_next_line(const int fd, char **line);
-int					ft_count_words(char *str, char c);
+int					ft_word_count(const char *s, char c);
 
 #endif

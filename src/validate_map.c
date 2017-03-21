@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_validate_map.c                                  :+:      :+:    :+:   */
+/*   validate_map.c	                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-static int		ft_clean_mem(t_list **list, t_map **m)
+static int	ft_clean_mem(t_list **list, t_map **m)
 {
 	t_list	*next;
 
@@ -31,7 +31,20 @@ static int		ft_clean_mem(t_list **list, t_map **m)
 	return (0);
 }
 
-static int		ft_fill_map(t_map **m, t_list *list)
+static int	*ft_init_vector(int x, int y, char *str)
+{
+	t_vector	*v;
+
+	if (!(v = ft_memalloc(sizeof(t_vector))))
+		return (0);
+	v->x = (double)x;
+	v->y = (double)y;
+	v->z = (double)ft_atoi(str);
+	v->color = 0xFFFFFF;
+	return (v);
+}
+
+static int	ft_fill_map(t_map **m, t_list *list)
 {
 	t_list	*lst;
 	int		x;
@@ -46,7 +59,7 @@ static int		ft_fill_map(t_map **m, t_list *list)
 		if (!(split = ft_strsplit(lst->content, ' ')))
 			return (ft_clean_mem(&list, m));
 		while (++x < (*m)->width)
-			(*m)->vector[y * (*m)->width + x] = ft_vector(x, y, split[x]);
+			(*m)->vector[y * (*m)->width + x] = ft_init_vector(x, y, split[x]);
 		ft_split_del(&split);
 		lst = lst->next;
 	}
@@ -56,7 +69,7 @@ static int		ft_fill_map(t_map **m, t_list *list)
 	return (1);
 }
 
-static int		ft_get_line(int fd, t_list **list)
+static int	ft_get_line(int fd, t_list **list)
 {
 	t_list	*tmp;
 	int		ret;
@@ -67,12 +80,12 @@ static int		ft_get_line(int fd, t_list **list)
 	while ((ret = get_next_line(fd, &line)))
 	{
 		if (count == -1)
-			count = ft_count_words(line, ' ');
+			count = ft_word_count(line, ' ');
 		tmp = ft_lstnew(line, ft_strlen(line) + 1);
 		if (!tmp)
 			return (ft_clean_mem(list, 0));
 		ft_lstadd(list, tmp);
-		if (count != ft_count_words(line, ' '))
+		if (count != ft_word_count(line, ' '))
 			return (ft_clean_mem(list, 0));
 		ft_strdel(&line);
 	}
@@ -82,7 +95,7 @@ static int		ft_get_line(int fd, t_list **list)
 	return (1);
 }
 
-int				ft_validate_map(int fd, t_map **m)
+int			ft_validate_map(int fd, t_map **m)
 {
 	t_list	*list;
 
@@ -91,7 +104,7 @@ int				ft_validate_map(int fd, t_map **m)
 		return (0);
 	if (!(*m = ft_memalloc(sizeof(t_map))))
 		return (ft_clean_mem(&list, m));
-	(*m)->width = ft_count_words(list->content, ' ');
+	(*m)->width = ft_word_count(list->content, ' ');
 	(*m)->height = ft_lstcount(list);
 	(*m)->min_depth = 0;
 	(*m)->max_depth = 0;

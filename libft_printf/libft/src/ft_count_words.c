@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_words.c                                   :+:      :+:    :+:   */
+/*   ft_word_count.c	                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,15 +12,21 @@
 
 #include "libft.h"
 
-int		ft_count_words(char *str, char c)
+int		ft_word_count(const char *str, char c)
 {
-	int		res;
 	int		i;
-
-	i = -1;
-	res = 0;
-	while (str[++i])
-		if (str[i] == c)
-			res++;
-	return (res);
+	int		count;
+	
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		while (str[i] && str[i] == c)
+			i++;
+		if (str[i])
+			count++;
+		while (str[i] && str[i] != c)
+			i++;
+	}
+	return (count);
 }

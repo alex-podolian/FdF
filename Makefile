@@ -15,7 +15,7 @@ NAME_BASE = fdf
 
 # compiler
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS =# -Wall -Wextra -Werror -g
 
 # directories
 FDF_SRC_DIR = ./src/

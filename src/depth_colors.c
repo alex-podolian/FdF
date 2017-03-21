@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vector.c                                        :+:      :+:    :+:   */
+/*   depth_colors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,37 @@
 
 #include "fdf.h"
 
-void		ft_colors(t_map *m)
+static double	ft_point(double val, double min, double max)
+{
+	if (val == min)
+		return (0.0);
+	if (val == max)
+		return (1.0);
+	return ((val - min) / (max - min));
+}
+
+static int		ft_rgb(int c_1, int c_2, double p)
+{
+	if (c_1 == c_2)
+		return (c_1);
+	return ((int)((double)c_1 + (c_2 - c_1) * p));
+}
+
+static int		ft_get_color(int c_1, int c_2, double p)
+{
+	int		r;
+	int		g;
+	int		b;
+
+	if (c_1 == c_2)
+		return (c_1);
+	r = ft_rgb((c_1 >> 16) & 0xFF, (c_2 >> 16) & 0xFF, p);
+	g = ft_rgb((c_1 >> 8) & 0xFF, (c_2 >> 8) & 0xFF, p);
+	b = ft_rgb(c_1 & 0xFF, c_2 & 0xFF, p);
+	return (r << 16 | g << 8 | b);
+}
+
+void			ft_colors(t_map *m)
 {
 	t_vector	v;
 	t_vector	*curr;
@@ -24,13 +54,13 @@ void		ft_colors(t_map *m)
 		while (++v.x < m->width)
 		{
 			curr = m->vector[(int)v.y * m->width + (int)v.x];
-			curr->color = clerp(0xFF0000, 0xFFFFFF, ft_ilerp(curr->z,
+			curr->color = ft_get_color(0xFF0000, 0xFFFFFF, ft_ilerp(curr->z,
 				m->min_depth, m->max_depth));
 		}
 	}
 }
 
-void		ft_depth(t_map *m)
+void			ft_depth(t_map *m)
 {
 	int			min;
 	int			max;
@@ -54,19 +84,4 @@ void		ft_depth(t_map *m)
 	}
 	m->min_depth = min;
 	m->max_depth = max;
-}
-
-t_vector	*ft_vector(int x, int y, char *str)
-{
-	t_vector	*v;
-
-	if (!(v = ft_memalloc(sizeof(t_vector))))
-		return (0);
-	v->x = (double)x;
-	v->y = (double)y;
-	v->z = (double)ft_atoi(str);
-	printf("str = %s\n", str);
-	printf("v->z = %f\n", v->z);
-	v->color = 0xFFFFFF;
-	return (v);
 }

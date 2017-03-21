@@ -12,26 +12,7 @@
 
 #include "libft.h"
 
-static unsigned int		ft_word_count(const char *s, char c)
-{
-	size_t			i;
-	unsigned int	count;
-
-	i = 0;
-	count = 0;
-	while (s[i])
-	{
-		while (s[i] && s[i] == c)
-			i++;
-		if (s[i])
-			count++;
-		while (s[i] && s[i] != c)
-			i++;
-	}
-	return (count);
-}
-
-char					**ft_strsplit(char const *s, char c)
+char	**ft_strsplit(char const *s, char c)
 {
 	char			**str;
 	unsigned int	i;
