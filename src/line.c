@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 15:55:27 by opodolia          #+#    #+#             */
-/*   Updated: 2017/03/21 18:05:52 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/03/22 19:13:40 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ static int	ft_process_point(t_mlx *mlx, t_line *line, t_vector *v_1,
 {
 	double	prec;
 
-	if (v_1->x < 0 || v_1->x >= WIN_WIDTH || v_1->y < 0 || v_1->y >= WIN_HEIGHT ||
-		v_2->x < 0 || v_2->x >= WIN_WIDTH || v_2->y < 0 || v_2->y >= WIN_HEIGHT)
+	if (v_1->x < 0 || v_1->x >= WIN_WIDTH || v_1->y < 0 ||
+		v_1->y >= WIN_HEIGHT || v_2->x < 0 || v_2->x >= WIN_WIDTH ||
+		v_2->y < 0 || v_2->y >= WIN_HEIGHT)
 		return (1);
 	prec = (line->d_x > line->d_y ?
 		ft_point((int)v_1->x, (int)line->start.x, (int)line->stop.x) :
@@ -29,9 +30,9 @@ static int	ft_process_point(t_mlx *mlx, t_line *line, t_vector *v_1,
 	if (line->err_2 > -line->d_x)
 	{
 		line->err -= line->d_y;
-		v_1->x += line->s_x
+		v_1->x += line->s_x;
 	}
-	if (line->err_2 <line->d_y)
+	if (line->err_2 < line->d_y)
 	{
 		line->err += line->d_x;
 		v_1->y += line->s_y;
@@ -113,6 +114,7 @@ static int	ft_fix_line(t_vector *v_1, t_vector *v_2)
 void		ft_line(t_mlx *mlx, t_vector v_1, t_vector v_2)
 {
 	t_line	line;
+
 	v_1.x = (int)v_1.x;
 	v_2.x = (int)v_2.x;
 	v_1.y = (int)v_1.y;
@@ -125,7 +127,7 @@ void		ft_line(t_mlx *mlx, t_vector v_1, t_vector v_2)
 	line.d_y = (int)ABS((int)v_2.y - (int)v_1.y);
 	line.s_x = (int)v_1.x < (int)v_2.x ? 1 : -1;
 	line.s_y = (int)v_1.y < (int)v_2.y ? 1 : -1;
-	line.err = (line.d_x > line.d_y ? line.d_x : line.d_y) / 2;
+	line.err = (line.d_x > line.d_y ? line.d_x : -line.d_y) / 2;
 	while (((int)v_1.x != (int)v_2.x || (int)v_1.y != (int)v_2.y))
 		if (ft_process_point(mlx, &line, &v_1, &v_2))
 			break ;

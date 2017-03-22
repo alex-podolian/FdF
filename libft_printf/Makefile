@@ -6,7 +6,7 @@
 #    By: opodolia <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/03 13:55:22 by opodolia          #+#    #+#              #
-#    Updated: 2017/03/20 20:16:39 by opodolia         ###   ########.fr        #
+#    Updated: 2017/03/22 19:17:58 by opodolia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ L_FILES = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 		  ft_wclen.c ft_wcslen.c ft_wctomb.c ft_wcstombs.c \
 		  ft_putchar.c ft_putstr.c ft_putendl.c ft_putnbr.c ft_putchar_fd.c \
 		  ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
-		  get_next_line.c ft_count_words.c
+		  get_next_line.c ft_word_count.c
 
 L_SRC = $(addprefix $(L_SRC_DIR), $(L_FILES))
 L_OBJ = $(addprefix $(L_OBJ_DIR), $(L_FILES:.c=.o))

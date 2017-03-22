@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/06 15:10:35 by opodolia          #+#    #+#             */
-/*   Updated: 2017/03/21 18:05:08 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/03/22 19:12:07 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <string.h>
 # include <stdint.h>
 # include <wchar.h>
-# define MAX(a, b) (a > b ? a : b)
-# define ABS(n) (n < 0 ? -n : n)
+# define MAX(a, b) ((a) > (b) ? (a) : (b))
+# define ABS(n) ((n) < 0 ? -(n) : (n))
 # define BUFF_SIZE 100000
 
 typedef struct		s_list

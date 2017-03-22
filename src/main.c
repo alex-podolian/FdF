@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/16 15:56:17 by opodolia          #+#    #+#             */
-/*   Updated: 2017/03/21 15:46:57 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/03/22 19:14:00 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,17 @@ int				main(int argc, char **argv)
 	t_map	*map;
 	t_mlx	*mlx;
 
-	if (argc != 2)
+	if (argc < 2)
 		return (ft_error("usage: ./fdf source_file\n"));
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0 || !ft_validate_map(fd, &map))
 		return (ft_error("error: invalid file\n"));
 	if (!(mlx = ft_init(ft_strjoin("FdF - ", argv[1]))))
-		return (ft_error("error: mlx couldn't init"));
+		return (ft_error("error: mlx couldn't init\n"));
 	mlx->map = map;
 	ft_rendering(mlx);
 	mlx_key_hook(mlx->window, ft_key_esc, mlx);
-	mlx_hook(mlx_window, 4, 0, ft_mouse_down, mlx);
+	mlx_hook(mlx->window, 4, 0, ft_mouse_down, mlx);
 	mlx_hook(mlx->window, 5, 0, ft_mouse_up, mlx);
 	mlx_hook(mlx->window, 6, 0, ft_mouse_move, mlx);
 	mlx_loop(mlx->mlx);

@@ -6,19 +6,20 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/16 17:24:21 by opodolia          #+#    #+#             */
-/*   Updated: 2017/03/21 18:04:28 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/03/22 19:36:09 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-# define WIN_WIDTH 1280
-# define WIN_HEIGHT 720
+# define WIN_WIDTH 1600
+# define WIN_HEIGHT 1024
 # include "../libft_printf/includes/ft_printf.h"
 # include "../minilibx/mlx.h"
 # include <fcntl.h>
 # include <math.h>
 # include <limits.h>
+# include <stdio.h>
 
 typedef struct	s_vector
 {

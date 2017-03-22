@@ -6,7 +6,7 @@
 #    By: opodolia <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/20 16:00:27 by opodolia          #+#    #+#              #
-#    Updated: 2017/03/21 18:07:24 by opodolia         ###   ########.fr        #
+#    Updated: 2017/03/22 16:43:40 by opodolia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ FDF_OBJ = $(addprefix $(FDF_OBJ_DIR), $(FDF_FILES:.c=.o))
 LIB_DIR = ./libft_printf/
 LIB = $(addprefix $(LIB_DIR), libftprintf.a)
 LIB_INC = -I ./libft_printf
-LIB_LNK = -L ./libft_printf -l ft
+LIB_LNK = -L ./libft_printf -l ftprintf
 
 # mlx lib
 MLX_DIR = ./minilibx/

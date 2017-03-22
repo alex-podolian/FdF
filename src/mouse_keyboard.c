@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mouse_keyboard.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/22 16:12:13 by opodolia          #+#    #+#             */
+/*   Updated: 2017/03/22 19:14:09 by opodolia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 int		ft_mouse_move(int x, int y, t_mlx *mlx)
@@ -6,7 +18,7 @@ int		ft_mouse_move(int x, int y, t_mlx *mlx)
 	mlx->mouse->last_y = mlx->mouse->y;
 	mlx->mouse->x = x;
 	mlx->mouse->y = y;
-	if (mlx->mouse->down & (1 << 1) && mlx->mouse->down &(1 << 2))
+	if (mlx->mouse->down & (1 << 1) && mlx->mouse->down & (1 << 2))
 	{
 		mlx->cam->offset_x += (x - mlx->mouse->last_x);
 		mlx->cam->offset_y += (y - mlx->mouse->last_y);
@@ -26,6 +38,7 @@ int		ft_mouse_move(int x, int y, t_mlx *mlx)
 		ft_rendering(mlx);
 	return (0);
 }
+
 int		ft_mouse_up(int button, int x, int y, t_mlx *mlx)
 {
 	(void)x;
@@ -46,8 +59,7 @@ int		ft_mouse_down(int button, int x, int y, t_mlx *mlx)
 int		ft_key_esc(int key, t_mlx *mlx)
 {
 	(void)mlx;
-
-	if (key = 53)
+	if (key == 53)
 		exit(EXIT_SUCCESS);
 	return (0);
 }

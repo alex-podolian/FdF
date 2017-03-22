@@ -6,13 +6,13 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 15:44:02 by opodolia          #+#    #+#             */
-/*   Updated: 2017/03/21 16:54:09 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/03/22 16:50:26 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static t_vector ft_rotation(t_vector vec,t_cam *cam)
+static t_vector	ft_rotation(t_vector vec, t_cam *cam)
 {
 	double		x;
 	double		y;
@@ -21,12 +21,12 @@ static t_vector ft_rotation(t_vector vec,t_cam *cam)
 
 	x = vec.x;
 	z = vec.z;
-	v.x = cos(vec->y) * x + sin(vec->y) * z;
-	v.z = -sin(vec->y) * x + cos(vec->y) * z;
+	v.x = cos(cam->y) * x + sin(cam->y) * z;
+	v.z = -sin(cam->y) * x + cos(cam->y) * z;
 	y = vec.y;
 	z = v.z;
-	v.y = cos(vec->x) * y - sin(vec->x) * z;
-	v.z = sin(vec->x) * y + cos(vec->x) * z;
+	v.y = cos(cam->x) * y - sin(cam->x) * z;
+	v.z = sin(cam->x) * y + cos(cam->x) * z;
 	v.color = vec.color;
 	return (v);
 }
