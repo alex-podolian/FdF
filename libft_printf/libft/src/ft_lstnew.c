@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/05 12:26:09 by opodolia          #+#    #+#             */
-/*   Updated: 2016/12/07 18:20:33 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/03/23 11:24:22 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@ t_list	*ft_lstnew(void const *content, size_t content_size)
 {
 	t_list	*res;
 
-	res = (t_list *)malloc(sizeof(t_list));
-	if (!res)
+	if (!(res = (t_list *)malloc(sizeof(t_list))))
 		return (0);
 	if (content)
 	{
-		res->content = malloc(content_size);
-		if (res->content)
+		if ((res->content = malloc(content_size)))
 		{
 			ft_memcpy(res->content, content, content_size);
 			res->content_size = content_size;

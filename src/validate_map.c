@@ -6,13 +6,13 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 15:05:36 by opodolia          #+#    #+#             */
-/*   Updated: 2017/03/22 17:43:59 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/03/23 12:02:25 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static int		ft_clean_mem(t_list **list, t_map **m)
+static int		ft_clean_mem(t_list **list, t_map **map)
 {
 	t_list	*next;
 
@@ -23,10 +23,10 @@ static int		ft_clean_mem(t_list **list, t_map **m)
 		ft_memdel((void **)list);
 		*list = next;
 	}
-	if (m && *m)
+	if (map && *map)
 	{
-		ft_memdel((void **)&(*m)->vector);
-		ft_memdel((void **)m);
+		ft_memdel((void **)&(*map)->vector);
+		ft_memdel((void **)map);
 	}
 	return (0);
 }
@@ -81,8 +81,7 @@ static int		ft_get_line(int fd, t_list **list)
 	{
 		if (count == -1)
 			count = ft_word_count(line, ' ');
-		tmp = ft_lstnew(line, ft_strlen(line) + 1);
-		if (!tmp)
+		if (!(tmp = ft_lstnew(line, ft_strlen(line) + 1)))
 			return (ft_clean_mem(list, 0));
 		ft_lstadd(list, tmp);
 		if (count != ft_word_count(line, ' '))
@@ -111,7 +110,7 @@ int				ft_validate_map(int fd, t_map **m)
 	(*m)->vector = ft_memalloc(sizeof(t_vector *) * (*m)->width * (*m)->height);
 	if (!(*m)->vector)
 	{
-		ft_memdel((void **)&(*m));
+		ft_memdel((void **)m);
 		return (ft_clean_mem(&list, m));
 	}
 	return (ft_fill_map(m, list));

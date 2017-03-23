@@ -6,7 +6,7 @@
 /*   By: opodolia <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/16 15:56:17 by opodolia          #+#    #+#             */
-/*   Updated: 2017/03/22 19:14:00 by opodolia         ###   ########.fr       */
+/*   Updated: 2017/03/23 12:35:22 by opodolia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ static t_mlx	*ft_init(char *title)
 	mlx->cam->scale = 32;
 	mlx->cam->offset_x = WIN_WIDTH / 2;
 	mlx->cam->offset_y = WIN_HEIGHT / 2;
+	ft_memdel((void **)&title);
 	return (mlx);
 }
 
